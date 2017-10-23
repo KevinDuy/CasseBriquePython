@@ -1,20 +1,21 @@
 from upemtk import *
 import time
-from tkinter import *
+
+
 
 if __name__ == '__main__':
 	largeurFen = 500
 	hauteurFen = 500
-	fenetrePrinc = Tk()
-	canvasFen = Canvas(fenetrePrinc,width = largeurFen,height=hauteurFen)
-	canvasFen.pack()
+	cree_fenetre(largeurFen,hauteurFen)
 	#---le carré---
 	hauteurRect = 30
 	largeurRect = 60
 	xRect = largeurFen//2
 	yRect = hauteurFen-hauteurRect
-	vitesseRect = int(input('entrez une vitesse de rectangle :\
-		entre 1 et 10\n'))
+
+
+	# vitesseRect = int(input('entrez une vitesse de rectangle :\
+	# 	entre 1 et 10\n'))
 	#---la balle---
 	rayonBalle = 20
 	xBalle = largeurFen//2
@@ -26,15 +27,15 @@ if __name__ == '__main__':
 	
 	
 	while True:
-		canvasFen.delete('ball')
-		canvasFen.delete('rect')
-		canvasFen.create_rectangle(xRect,yRect,xRect+largeurRect,yRect+hauteurRect,\
-			fill='black',tag='rect')
-		canvasFen.create_oval(xBalle-rayonBalle,yBalle-rayonBalle,\
-			xBalle+rayonBalle,yBalle +rayonBalle,fill='red',tag='ball')
+		efface('ball')
+		efface('rect')
+		rectangle(xRect,yRect,xRect+largeurRect,yRect+hauteurRect,\
+			remplissage='black',tag='rect')
+		cercle(xBalle,yBalle,rayonBalle,\
+			remplissage='red',tag='ball')
 		time.sleep(0.030)
 
-		canvasFen.update()
+		mise_a_jour()
 		#checking if the ball touches window edges
 		if xBalle+rayonBalle >=largeurFen or xBalle-rayonBalle<=0:
 			if backXballe:
@@ -58,7 +59,6 @@ if __name__ == '__main__':
 			yBalle += vitesseBalle
 		else:
 			yBalle -= vitesseBalle
-
 
 
 
